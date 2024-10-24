@@ -1,0 +1,21 @@
+version: 2.1
+
+# Define the jobs we want to run for this project
+jobs:
+  inspect:
+    docker:
+       - image: cimg/base:2023.03
+    resource_class: small
+    environment:
+      WEBHOOK_BODY: << pipeline.trigger_parameters.webhook.body >>
+    steps:
+      - run:
+          name: Webhook Body for Debugging
+          command: |
+            echo "${WEBHOOK_BODY}"
+
+# Orchestrate our job run sequence
+workflows:
+  build_and_test:
+    jobs:
+      - inspect
