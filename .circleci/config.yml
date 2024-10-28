@@ -10,7 +10,7 @@ jobs:
       WEBHOOK_BODY: << pipeline.trigger_parameters.webhook.body >>
     steps:
       - run:
-          name: Display Webhook Body
+          name: Display Webhook Bodys
           command: |
             echo "${WEBHOOK_BODY}"
 
